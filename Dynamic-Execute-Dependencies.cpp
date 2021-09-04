@@ -27,7 +27,7 @@ void copyDependencies(string output, string address)
    string temp = output.substr(output.find("/"));
    temp = "cp " + temp.substr(0, temp.find(" "));
 
-   temp += " " + address + "lib/";
+   temp += " " + address + "libs/";
 
    system(temp.c_str());
 }
@@ -75,10 +75,10 @@ int main(int argc, char const *argv[])
    string address = findAddress(file);
 
    struct stat buff;
-   if (stat((address + "/lib").c_str(), &buff) != 0)
-      if (mkdir((address + "/lib").c_str(), S_IRUSR | S_IWUSR | S_IXUSR) != 0)
-         throw runtime_error("Can't make lib file in address, check entered address again!");
+   if (stat((address + "/libs").c_str(), &buff) != 0)
+      if (mkdir((address + "/libs").c_str(), S_IRUSR | S_IWUSR | S_IXUSR) != 0)
+         throw runtime_error("Can't make libs folder in address, check entered address again!");
 
    readDependencies(file, address);
-   cout<< "All of dependencies coppied to "<<address << "lib" <<endl;
+   cout<< "All of dependencies coppied to "<<address << "libs" <<endl;
 }
